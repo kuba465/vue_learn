@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue Learn by Kuba</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+<div id="root">
+    <h1>All tasks:</h1>
+    <ul>
+        <!--<li v-for="task in tasks" v-if="task.completed" v-text="task.description"></li>-->
+        <li v-for="task in completedTasks" v-text="task.description"></li>
+    </ul>
+
+    <h1>Incomplete tasks:</h1>
+    <ul>
+        <li v-for="task in incompleteTasks" v-text="task.description"></li>
+    </ul>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+<script>
+     let app = new Vue({
+        el: '#root',
+        data: {
+            message: 'Hello Vue Js',
+            tasks: [
+                {description: 'Go to the store', completed: true},
+                {description: 'Finish screencast', completed: false},
+                {description: 'Make donation', completed: false},
+                {description: 'CLear inbox', completed: false},
+                {description: 'Make dinner', completed: false},
+                {description: 'Clean room', completed: true},
+            ]
+        },
+        computed: {
+            reversedMessage() {
+                return this.message.split('').reverse().join('');
+            },
+            completedTasks() {
+                return this.tasks.filter(task => task.completed);
+            },
+            incompleteTasks(){
+                return this.tasks.filter(task => !task.completed);
+                //ES6 a w ES5
+                // this.tasks.filter(function (task) {
+                //     return !task.completed;
+                // });
+            }
+        }
+    });
+</script>
+</body>
+</html>

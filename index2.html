@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue Learn by Kuba</title>
+    <style>
+        .is-loading {
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+
+<div id="root">
+    <button :disabled="isDisabled" :class="{'is-loading': isDisabled}" @click="toggleDisabled(true)">Click me</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+<script>
+
+    var app = new Vue({
+        el: '#root',
+        data: {
+            className: 'color-red',
+            isDisabled: false,
+            title: 'Now the title is set from JavaScript'
+        },
+        methods: {
+            toggleDisabled(value) {
+                this.isDisabled = value;
+                window.setTimeout(this.removeDisable, 2000);
+            },
+            removeDisable() {
+                this.isDisabled = false;
+            }
+        }
+    });
+</script>
+</body>
+</html>
